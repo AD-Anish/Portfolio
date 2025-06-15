@@ -1,46 +1,106 @@
 <!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Homepage</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="shortcut icon" href="https://img.icons8.com/external-outline-lafs/512/external-ic_incognito-crypto-security-outline-lafs.png"/>
-	</head>
-	<body class="is-preload">
+<html lang="en">
+  <head>
+    <title>Homepage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link rel="shortcut icon" href="https://img.icons8.com/external-outline-lafs/512/external-ic_incognito-crypto-security-outline-lafs.png"/>
+    <style>
+      /* Custom styles for the search bar */
+      #searchContainer {
+        background-color: #2d2d2d;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px solid #b96ad9;
+        position: relative; /* Ensure the suggestions are positioned relative to this container */
+      }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+      #searchInput {
+        width: 100%;
+        max-width: 600px;
+        padding: 12px;
+        border-radius: 5px;
+        border: 2px solid #b96ad9;
+        background-color: #333;
+        color: white;
+        font-size: 16px;
+      }
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<span class="icon fa-gem"></span>
-						</div>
-						<div class="content">
-							<div class="inner">
-								<h1>Homepage</h1>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="#Main">Main</a></li>
-								<li><a href="#Others">Others</a></li>
-								<li><a href="#Last">Last</a></li>
-								<li><a href="#Links">Links</a></li>
-								<!--<li><a href="#elements">Elements</a></li>-->
-							</ul>
-						</nav>
-					</header>
+      #searchInput::placeholder {
+        color: #aaa;
+      }
 
-				<!-- Main -->
-					<div id="main">
+      /* Suggestions dropdown */
+      #suggestions {
+        background-color: #333;
+        color: white;
+        border: 2px solid #b96ad9;
+        max-width: 600px;
+        margin: 10px auto;
+        border-radius: 5px;
+        padding: 5px;
+        display: none; /* Initially hidden */
+        position: absolute;
+        top: 50px; /* Position it just below the search bar */
+        left: 0;
+        right: 0;
+        z-index: 10;
+        width: calc(100% - 40px); /* Match the width of the search input */
+        box-sizing: border-box;
+      }
 
-						<!-- Intro -->
-							<article id="Main">
+      #suggestions a {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+      }
 
-<table border="1" cellpadding="3" cellspacing="1" style="font-size:14.0pt; border-collapse: collapse; width: 100%; height: 122px; border-color: #b96ad9; border-style: groove; margin-left: auto; margin-right: auto;">
+      #suggestions a:hover {
+        background-color: #b96ad9;
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Header -->
+      <header id="header">
+        <div class="logo">
+          <span class="icon fa-gem"></span>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h1>Homepage</h1>
+          </div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#Main">Main</a></li>
+            <li><a href="#Others">Others</a></li>
+            <li><a href="#Last">Last</a></li>
+            <li><a href="#Links">Links</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Search Box (Global) -->
+      <div id="searchContainer">
+        <input type="text" id="searchInput" placeholder="Search links..." />
+        <div id="suggestions"></div>
+      </div>
+
+      <!-- Main Content -->
+      <div id="main">
+
+        <!-- Main Table -->
+        <article id="Main">
+<table>
   <tbody>
     <tr>
       <td> <a href="https://accounts.google.com/"> Gmail </a> </td>
@@ -344,12 +404,11 @@
       </tr>
   </tbody>
 </table>
-							</article>
+        </article>
 
-						<!-- Work -->
-							<article id="Others">
-
-<table border="1" cellpadding="3" cellspacing="1" style="font-size:14.0pt; border-collapse: collapse; width: 100%; height: 122px; border-color: #b96ad9; border-style: groove; margin-left: auto; margin-right: auto;">
+        <!-- Others Table -->
+        <article id="Others">
+<table>
   <tbody>
     <tr>
       <td> <a href="https://apk4free.net/"> APK4Free </a> </td>
@@ -618,12 +677,11 @@
       </tr>
   </tbody>
 </table>
-							</article>
+        </article>
 
-						<!-- About -->
-							<article id="Last">
-
-<table border="1" cellpadding="3" cellspacing="1" style="font-size:14.0pt; border-collapse: collapse; width: 100%; height: 122px; border-color: #b96ad9; border-style: groove; margin-left: auto; margin-right: auto;">
+        <!-- Last Table -->
+        <article id="Last">
+<table>
   <tbody>
     <tr>
       <td> <a href="https://www.axisbank.com/"> Axis </a> </td>
@@ -871,49 +929,148 @@
       </tr>      
   </tbody>
 </table>
-							</article>
+        </article>
 
-						<!-- Contact -->
-							<article id="Links">
+        <!-- Links Section -->
+        <article id="Links">
+          <ul id="linksList">
+            <li><a href="bookmarks.html">Brave</a></li>
+            <li><a href="favorites.html">Edge</a></li>
+            <li><a href="ungoogled.html">Ungoogled</a></li>
+            <li><a href="OfficeRTool.zip">Office</a></li>
+            <li><a href="Soft.w.rar">Soft.w</a></li>
+            <li><a href="Share.zip">Share</a></li>
+            <li><a href="Wall.p.zip">Wall.p</a></li>
 
-									<ul>
-										<li><a href="bookmarks.html">Brave</a></li>
-										<li><a href="favorites.html">Edge</a></li>
-										<li><a href="ungoogled.html">Ungoogled</a></li>
-										<li><a href="OfficeRTool.zip">Office</a></li>
-										<li><a href="Soft.w.rar">Soft.w</a></li>
-										<li><a href="Share.zip">Share</a></li>
-										<li><a href="Wall.p.zip">Wall.p</a></li>
-											<a href="#">More</a>
-											<ul>
-												<li><a href="https://sanad89d.github.io/homepage/">Homepage</a></li>
-												<li><a href="https://cambridgetextiles.github.io/Cambridge/">Cambridge</a></li>
-												<li><a href="https://ad-anish.github.io/Portfolio/">Portfolio</a></li>
-                        <li><a href="https://acanish.github.io/hp/">Bookmarks</a></li>
-												<li><a href="https://anish-hp.github.io/page/">Office</a></li>
-											</ul>
-									</ul>
+            <a href="#">More</a>
+            <ul>
+              <li><a href="https://sanad89d.github.io/homepage/">Homepage</a></li>
+              <li><a href="https://cambridgetextiles.github.io/Cambridge/">Cambridge</a></li>
+              <li><a href="https://ad-anish.github.io/Portfolio/">Portfolio</a></li>
+              <li><a href="https://acanish.github.io/hp/">Bookmarks</a></li>
+              <li><a href="https://anish-hp.github.io/page/">Office</a></li>
+            </ul>
+          </ul>
+        </article>
 
-							</article>
+      </div>
 
-					</div>
+      <!-- Footer -->
+      <footer id="footer">
+        <p>Information is eternal, computers are ephemeral, backup is the savior.</p>
+      </footer>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<p>Information is eternal, computers are ephemeral, backup is the savior.</p>
-					</footer>
+    </div>
 
-			</div>
+    <!-- BG -->
+    <div id="bg"></div>
 
-		<!-- BG -->
-			<div id="bg"></div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    <!-- Custom JS for Search Functionality -->
 
-	</body>
+<style>
+  /* Highlight the selected suggestion */
+  #suggestions a.selected {
+    background-color: #b96ad9; /* Light purple color for selection */
+    color: white; /* Ensure the text remains visible */
+    font-weight: bold; /* Make the selected text bold */
+    padding: 12px; /* Add some padding to make it more clickable */
+    border-radius: 5px; /* Rounded corners for the selected item */
+  }
+
+  /* Optional: Make suggestions look better on hover */
+  #suggestions a:hover {
+    background-color: #9b3db8; /* Darker shade when hovering */
+    color: white; /* Make text white on hover */
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsContainer = document.getElementById('suggestions');
+    let selectedIndex = -1; // To track the selected suggestion index
+
+    // Get all links inside the sections
+    const allLinks = [
+      ...document.querySelectorAll('#Main a'),
+      ...document.querySelectorAll('#Others a'),
+      ...document.querySelectorAll('#Last a'),
+      ...document.querySelectorAll('#Links a')
+    ];
+
+    // Search Event Listener
+    searchInput.addEventListener('input', function () {
+      const query = searchInput.value.trim().toLowerCase();  // Get search input value and make it lowercase
+      if (query === '') {
+        suggestionsContainer.style.display = 'none';  // Hide suggestions if input is empty
+        return;
+      }
+
+      const filteredLinks = allLinks.filter(link => link.textContent.toLowerCase().includes(query));
+
+      // Clear previous suggestions
+      suggestionsContainer.innerHTML = '';
+      selectedIndex = -1; // Reset selected index
+
+      // Show filtered links as suggestions
+      filteredLinks.forEach(link => {
+        const suggestion = document.createElement('a');
+        suggestion.href = link.href;
+        suggestion.textContent = link.textContent;
+        suggestion.target = '_blank';  // Open the link in a new tab
+
+        suggestion.addEventListener('click', function() {
+          suggestionsContainer.style.display = 'none'; // Hide suggestions when a link is clicked
+        });
+
+        suggestionsContainer.appendChild(suggestion);
+      });
+
+      // Display suggestions if there are any
+      suggestionsContainer.style.display = filteredLinks.length > 0 ? 'block' : 'none';
+    });
+
+    // Keydown event for arrow navigation and selection
+    searchInput.addEventListener('keydown', function (e) {
+      const suggestions = suggestionsContainer.querySelectorAll('a');
+      
+      if (e.key === 'ArrowDown') {
+        if (selectedIndex < suggestions.length - 1) {
+          selectedIndex++;
+          updateSuggestionHighlight(suggestions);
+        }
+      } else if (e.key === 'ArrowUp') {
+        if (selectedIndex > 0) {
+          selectedIndex--;
+          updateSuggestionHighlight(suggestions);
+        }
+      } else if (e.key === 'Enter') {
+        if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
+          window.location.href = suggestions[selectedIndex].href; // Navigate to the selected suggestion
+          suggestionsContainer.style.display = 'none'; // Hide suggestions after selection
+        }
+      }
+    });
+
+    // Function to highlight the currently selected suggestion
+    function updateSuggestionHighlight(suggestions) {
+      suggestions.forEach((suggestion, index) => {
+        if (index === selectedIndex) {
+          suggestion.classList.add('selected');
+        } else {
+          suggestion.classList.remove('selected');
+        }
+      });
+    }
+  });
+</script>
+
+  </body>
 </html>
