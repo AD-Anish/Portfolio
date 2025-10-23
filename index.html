@@ -1074,35 +1074,47 @@
     <!-- 👇 Add the script before closing body -->
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll("a[href]").forEach(a => {
-    // ❌ Skip links styled as buttons or inside buttons
-    if (a.classList.contains("button") || a.closest("button")) return;
+    // ❌ Skip links inside navigation or menu lists
+    if (
+      a.closest("ul#linksList") ||    // your custom links list
+      a.closest("ul:not(#linksTable)") || // any other nav-type <ul>
+      a.closest("nav") ||             // any <nav> section
+      a.classList.contains("button") ||
+      a.closest("button")
+    ) return;
+
+    // ❌ Skip empty or internal (#anchor) links
+    if (!a.href || a.href.startsWith("#") || a.href.startsWith("javascript:")) return;
+
+    // ❌ Skip local files or same-site links (no external favicons)
+    const linkHost = new URL(a.href, location.href).hostname;
+    if (linkHost === location.hostname) return;
 
     try {
-      const url = new URL(a.href);
-      const domain = url.hostname;
-      const faviconUrl = `https://www.google.com/s2/favicons?sz=32&domain=${domain}`;
+      // ✅ Add favicon for external links
+      const faviconUrl = `https://www.google.com/s2/favicons?sz=32&domain=${linkHost}`;
 
-      // Create favicon image
+      if (a.querySelector(".favicon")) return; // avoid duplicates
+
       const img = document.createElement("img");
       img.src = faviconUrl;
-      img.width = 16;
-      img.height = 16;
+      img.className = "favicon";
       img.alt = "";
-      img.loading = "lazy";
+      img.width = 13;
+      img.height = 13;
+      img.style.verticalAlign = "-2px";
       img.style.marginRight = "6px";
-      img.style.borderRadius = "4px";
-      img.style.verticalAlign = "middle";
+      img.style.borderRadius = "3px";
+      img.loading = "lazy";
 
-      // Wrap link text in a span so only the text can be underlined
-      const text = document.createElement("span");
-      text.textContent = a.textContent.trim();
+      // Wrap link text in a span for clean underline
+      const span = document.createElement("span");
+      span.textContent = a.textContent.trim();
 
-      // Replace original text and prepend the icon
       a.textContent = "";
-      a.append(img, text);
-
-    } catch (e) {
-      console.warn("Invalid link:", a.href);
+      a.append(img, span);
+    } catch (err) {
+      console.warn("Skipping favicon for invalid link:", a.href);
     }
   });
 });

@@ -231,7 +231,7 @@ textarea {
     color: #ffffff;
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 300;
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.65;
 }
 
@@ -1253,7 +1253,6 @@ button {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
-    -webkit-backface-visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -1868,4 +1867,23 @@ a:hover span {
 a.button {
     text-decoration: none !important;
     color: inherit !important;
+}
+
+/* Visual Polish */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover span {
+    text-decoration: underline;
+    color: #b96ad9;
+}
+
+a img.favicon {
+    width: 17px;
+    height: 17px;
+    margin-right: 6px;
+    vertical-align: -2px;
+    border-radius: 3px;
 }
